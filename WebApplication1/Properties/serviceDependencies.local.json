@@ -11,6 +11,13 @@
       "type": "storage.container",
       "connectionId": "dbConnectionString",
       "dynamicId": null
+    },
+    "mssql1": {
+      "serviceConnectorResourceId": "",
+      "secretStore": "LocalSecretsFile",
+      "type": "mssql.local",
+      "connectionId": "ConnectionStrings:affinity",
+      "dynamicId": null
     }
   }
 }
