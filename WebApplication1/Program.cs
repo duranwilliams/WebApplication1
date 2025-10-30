@@ -1,6 +1,9 @@
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Azure;
 
+// Filereader designed around public data given at data.gov
+// files: https://catalog.data.gov/dataset?q=&sort=metadata_created+desc
+
 var builder = WebApplication.CreateSlimBuilder(args);
 
 builder.Services.ConfigureHttpJsonOptions(options =>
@@ -14,13 +17,14 @@ builder.Services.AddAzureClients(clientBuilder =>
 });
 
 var app = builder.Build();
+var filetxt = DatafileReader.ImportFiles();
 
 var sampleTodos = new Todo[] {
-    new(1, "Walk the dog"),
-    new(2, "Do the dishes", DateOnly.FromDateTime(DateTime.Now)),
-    new(3, "Do the laundry", DateOnly.FromDateTime(DateTime.Now.AddDays(1))),
-    new(4, "Clean the bathroom"),
-    new(5, "Clean the car", DateOnly.FromDateTime(DateTime.Now.AddDays(2)))
+    new(1, "Create database normalized for most files"),
+    new(2, "Login and authentication", DateOnly.FromDateTime(DateTime.Now)),
+    new(3, "Report and present the data on the front end", DateOnly.FromDateTime(DateTime.Now.AddDays(1))),
+    new(4, "Commenting / code cleanup"),
+    new(5, filetxt)   
 };
 
 var todosApi = app.MapGroup("/todos");
@@ -37,5 +41,5 @@ public record Todo(int Id, string? Title, DateOnly? DueBy = null, bool IsComplet
 [JsonSerializable(typeof(Todo[]))]
 internal partial class AppJsonSerializerContext : JsonSerializerContext
 {
-
+    // can this be removed?
 }
