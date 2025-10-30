@@ -11,3 +11,6 @@ data.gov
 * - 
 * - 
 *************************************************************************
+
+History:
+2025.10.30 - Begin import file, continue to test changes, move file import out of Program.cs, db work to create a general schema for all files and metadata
