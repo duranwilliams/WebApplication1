@@ -35,8 +35,16 @@ public static void ReadExcelFile(string filePath)
             {
                 foreach (Cell cell in row.Elements<Cell>())
                 {
-                    string cellValue = GetCellValue(cell, workbookPart);
-                    Console.WriteLine(cellValue);
+                        try
+                        {
+                            string cellValue = GetCellValue(cell, workbookPart);
+                            Console.WriteLine(cellValue);
+                        }
+                        catch (Exception ex)
+                        {
+                            // TODO: logger 
+                            Console.WriteLine(ex.ToString());
+                        }
                 }
             }
         }
