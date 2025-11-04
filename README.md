@@ -13,5 +13,6 @@ data.gov
 *************************************************************************
 
 History:
+2025.11.4 - Change readline() to relative path, code cleanup and testing, begin saving data to db
 2025.10.30 - Begin import file, continue to test changes, move file import out of Program.cs, db work to create a general schema for all files and metadata
 - Add implementation of OpenXml to read/modify .xlsx files, test and debug
