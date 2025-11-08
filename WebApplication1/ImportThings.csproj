@@ -4,7 +4,7 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <InvariantGlobalization>true</InvariantGlobalization>
+    <InvariantGlobalization>false</InvariantGlobalization>
     <PublishAot>true</PublishAot>
     <UserSecretsId>24316c3e-c1a2-40fb-bca3-88550cc7173a</UserSecretsId>
     <OutputType>WinExe</OutputType>
@@ -22,6 +22,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Azure" Version="1.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="dbAffinityTables\Views\" />
+    <Folder Include="dbAffinityTables\Tables\" />
   </ItemGroup>
 
 </Project>

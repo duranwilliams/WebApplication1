@@ -12,17 +12,24 @@ ALTER PROC [dbo].[spInsertGeneralDataRow]
 AS
 begin
 	INSERT INTO MainDataTable
+		(Id, SpreadsheetName, Link, Field1Data, Field1Meta, 
+		Field2Data, Field2Meta, Field3Data, Field3Meta,	Field4Data, 
+		Field4Meta,	EditDate, EditUser)
 	Values(
-		(SELECT max(Id)+1 from MainDataTable), -- max id + 1
+		(SELECT COALESCE(max(Id)+1,0) from MainDataTable), -- max id + 1
 		@pFileName,
 		@pLink,
 		@pField01text,
 		@pField01comment,
+
 		@pField02text,
 		@pField02comment,
 		null,
 		null,
 		null,
-		null
+
+		null,
+		getdate(),
+		SUSER_NAME()
 	);
 end

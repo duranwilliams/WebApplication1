@@ -9,9 +9,10 @@ using System.Diagnostics;
 // This is just round 1 of planning this whole thing
 internal class DatafileReader
 {
+    public static String heatFilePath = "public_data_files\\Nationwide Collection of Heat Flow.xlsx";
     internal static string ImportFiles()
     {
-        var pth = "public_data_files\\Nationwide Collection of Heat Flow.xlsx";
+        var pth = heatFilePath;
         File.ReadLines(pth); // todo: read all lines and store what is needed for each file
         // Possible have 1 config per file to identify which fields to import
 
@@ -26,6 +27,9 @@ public static void ReadExcelFile(string filePath)
     {
         WorkbookPart? workbookPart = document.WorkbookPart;
         Sheets? sheets = (workbookPart != null ? workbookPart.Workbook.Sheets : null);
+        var rowList = new List<string>();
+            rowList.Add(filePath);
+            rowList.Add(heatFilePath);
 
             if (sheets != null && workbookPart != null)
             {
@@ -38,12 +42,15 @@ public static void ReadExcelFile(string filePath)
 
                         foreach (Row row in sheetData.Elements<Row>())
                         {
+                            var rowIncrementer = 0;
                             foreach (Cell cell in row.Elements<Cell>())
                             {
                                 try
                                 {
                                     string cellValue = GetCellValue(cell, workbookPart);
                                     Debug.WriteLine(cellValue);
+                                    rowList.Add(cellValue);
+                                    rowIncrementer++;
                                 }
                                 catch (Exception ex)
                                 {
@@ -51,6 +58,8 @@ public static void ReadExcelFile(string filePath)
                                     Debug.WriteLine(ex.ToString());
                                 }
                             }
+                            AffinityTables.spInsertGeneralDataRow(rowList);
+
                         }
                     }
                 }
