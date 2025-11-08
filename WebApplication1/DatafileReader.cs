@@ -3,6 +3,7 @@
 
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
+using System.Diagnostics;
 
 
 // This is just round 1 of planning this whole thing
@@ -23,31 +24,37 @@ public static void ReadExcelFile(string filePath)
 {
     using (SpreadsheetDocument document = SpreadsheetDocument.Open(filePath, false))
     {
-        WorkbookPart workbookPart = document.WorkbookPart;
-        Sheets sheets = workbookPart.Workbook.Sheets;
+        WorkbookPart? workbookPart = document.WorkbookPart;
+        Sheets? sheets = (workbookPart != null ? workbookPart.Workbook.Sheets : null);
 
-        foreach (Sheet sheet in sheets)
-        {
-            WorksheetPart worksheetPart = (WorksheetPart)workbookPart.GetPartById(sheet.Id);
-            SheetData sheetData = worksheetPart.Worksheet.GetFirstChild<SheetData>();
-
-            foreach (Row row in sheetData.Elements<Row>())
+            if (sheets != null && workbookPart != null)
             {
-                foreach (Cell cell in row.Elements<Cell>())
+                foreach (Sheet sheet in sheets)
                 {
-                        try
+                    if (sheet != null && sheet.Id != null)
+                    {
+                        WorksheetPart worksheetPart = (WorksheetPart)workbookPart.GetPartById(sheet.Id);
+                        SheetData? sheetData = worksheetPart.Worksheet.GetFirstChild<SheetData>();
+
+                        foreach (Row row in sheetData.Elements<Row>())
                         {
-                            string cellValue = GetCellValue(cell, workbookPart);
-                            Console.WriteLine(cellValue);
+                            foreach (Cell cell in row.Elements<Cell>())
+                            {
+                                try
+                                {
+                                    string cellValue = GetCellValue(cell, workbookPart);
+                                    Debug.WriteLine(cellValue);
+                                }
+                                catch (Exception ex)
+                                {
+                                    // TODO: logger 
+                                    Debug.WriteLine(ex.ToString());
+                                }
+                            }
                         }
-                        catch (Exception ex)
-                        {
-                            // TODO: logger 
-                            Console.WriteLine(ex.ToString());
-                        }
+                    }
                 }
             }
-        }
     }
 }
 
@@ -55,7 +62,8 @@ private static string GetCellValue(Cell cell, WorkbookPart workbookPart)
 {
         // Logic to retrieve the cell value
         // Handle shared strings and other data types
-        return String.Empty;
+        Debug.WriteLine("Printing out cell inner text");
+        return cell.InnerText.ToString();
 }
 
 }
