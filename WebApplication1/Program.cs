@@ -23,8 +23,8 @@ var sampleTodos = new Todo[] {
     new(1, "Create database normalized for most files"),
     new(2, "Login and authentication", DateOnly.FromDateTime(DateTime.Now)),
     new(3, "Report and present the data on the front end", DateOnly.FromDateTime(DateTime.Now.AddDays(1))),
-    new(4, "Commenting / code cleanup"),
-    new(5, filetxt)   
+    new(4, "Commenting / code cleanup")
+    //,new(5, filetxt)   
 };
 
 var todosApi = app.MapGroup("/todos");

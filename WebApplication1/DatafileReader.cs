@@ -10,7 +10,7 @@ internal class DatafileReader
 {
     internal static string ImportFiles()
     {
-        var pth = "data_files\\Nationwide Collection of Heat Flow.xlsx";
+        var pth = "public_data_files\\Nationwide Collection of Heat Flow.xlsx";
         File.ReadLines(pth); // todo: read all lines and store what is needed for each file
         // Possible have 1 config per file to identify which fields to import
 
