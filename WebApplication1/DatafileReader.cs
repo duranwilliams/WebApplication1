@@ -4,12 +4,14 @@
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System.Diagnostics;
+using System.Numerics;
 
 
 // This is just round 1 of planning this whole thing
 internal class DatafileReader
 {
     public static String heatFilePath = "public_data_files\\Nationwide Collection of Heat Flow.xlsx";
+    public static BigInteger currentFileRowCounter = 0; 
     internal static string ImportFiles()
     {
         var pth = heatFilePath;
@@ -59,7 +61,7 @@ public static void ReadExcelFile(string filePath)
                                 }
                             }
                             AffinityTables.spInsertGeneralDataRow(rowList);
-
+                            currentFileRowCounter++;
                         }
                     }
                 }
