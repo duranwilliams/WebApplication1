@@ -9,7 +9,7 @@ using System.Diagnostics.CodeAnalysis;
 internal class AffinityLogger
 {
     [RequiresUnreferencedCode("Calls System.Reflection.MethodBase.GetCurrentMethod()")]
-    internal static void CaptureLog(string v)
+    internal static void spCaptureLogRow(string v)
     {
         using (var conn = new SqlConnection(Environment.GetEnvironmentVariable("AffinityTablesConnStr")))
         {
@@ -20,7 +20,7 @@ internal class AffinityLogger
             {
                 
                 conn.Open();
-                command.Parameters.AddWithValue("pFileName", v);                    
+                command.Parameters.AddWithValue("InnerException", v);                    
 
                 command.ExecuteNonQuery();
             }
