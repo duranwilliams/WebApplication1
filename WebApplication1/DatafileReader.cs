@@ -58,6 +58,7 @@ public static void ReadExcelFile(string filePath)
                                 {
                                     // TODO: logger 
                                     Debug.WriteLine(ex.ToString());
+                                    AffinityLogger.CaptureLog(ex.InnerException.ToString());
                                 }
                             }
                             AffinityTables.spInsertGeneralDataRow(rowList);

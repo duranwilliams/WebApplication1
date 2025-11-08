@@ -26,7 +26,6 @@
 
   <ItemGroup>
     <Folder Include="dbAffinityTables\Views\" />
-    <Folder Include="dbAffinityTables\Tables\" />
   </ItemGroup>
 
 </Project>
