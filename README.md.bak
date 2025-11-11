@@ -13,7 +13,7 @@ data.gov
 *************************************************************************
 
 History:
-2025.11.8 - Present the data in the ui, Rearchitect backend source code solution; it'll work for now , Stub out the backend, create insert stored proc, db table updates ,fix reference to old folder name in relative path, took raw file dmp out of ui, try to workaround warning messages without tring to optimize the code yet, implement debug instead of output to console.
+2025.11.8 - Continue moving db objects into source control Present the data in the ui, Rearchitect backend source code solution; it'll work for now , Stub out the backend, create insert stored proc, db table updates ,fix reference to old folder name in relative path, took raw file dmp out of ui, try to workaround warning messages without tring to optimize the code yet, implement debug instead of output to console.
 2025.11.4 - Change readline() to relative path, code cleanup and testing, begin saving data to db
 2025.10.30 - Begin import file, continue to test changes, move file import out of Program.cs, db work to create a general schema for all files and metadata
 - Add implementation of OpenXml to read/modify .xlsx files, test and debug
