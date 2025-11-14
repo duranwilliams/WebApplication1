@@ -3,6 +3,7 @@
 
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
+using Microsoft.IdentityModel.Tokens;
 using System.Diagnostics;
 using System.Numerics;
 
@@ -17,6 +18,12 @@ internal class DatafileReader
         var pth = heatFilePath;
         File.ReadLines(pth); // todo: read all lines and store what is needed for each file
         // Possible have 1 config per file to identify which fields to import
+
+        // If the environment variable is set to clear all records, call the clear stored proc
+        if (!Environment.GetEnvironmentVariable("isClearRowsBeforeImport").IsNullOrEmpty())
+            AffinityTables.spClearMainTable();
+
+
 
         ReadExcelFile(pth);
         return File.ReadAllText(pth);

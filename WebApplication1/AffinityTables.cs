@@ -11,6 +11,26 @@ internal class AffinityTables
     public static List<String>? row { get; set; }
 
     [RequiresUnreferencedCode("Calls System.Reflection.MethodBase.GetCurrentMethod()")]
+    internal static void spClearMainTable()
+    {
+        using (var conn = new SqlConnection(Environment.GetEnvironmentVariable("AffinityTablesConnStr")))
+        {
+            using (var command = new SqlCommand(System.Reflection.MethodBase.GetCurrentMethod().Name, conn)
+            {
+                CommandType = CommandType.StoredProcedure
+            })
+            {
+
+                conn.Open();
+
+                var rowArray = row.ToArray();
+
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+
+    [RequiresUnreferencedCode("Calls System.Reflection.MethodBase.GetCurrentMethod()")]
     internal static void spInsertGeneralDataRow(List<string> row)
     {
         using (var conn = new SqlConnection(Environment.GetEnvironmentVariable("AffinityTablesConnStr")))
