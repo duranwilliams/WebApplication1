@@ -13,6 +13,7 @@ data.gov
 *************************************************************************
 
 History:
+2025.11.15 - Migrate project to Visual Studio 2026! Make sure the app still works. Continue migrating db stuff into source control folder
 2025.11.14 - Add reference to stored proc spCleareTable or whatever it's called, wired it up and checked for the environment variable before clearing before import
 2025.11.10 - Developed view getCurrentDayRows or something, tested it and it's good
 2025.11.8 - Continue moving db objects into source control Present the data in the ui, Rearchitect backend source code solution; it'll work for now , Stub out the backend, create insert stored proc, db table updates ,fix reference to old folder name in relative path, took raw file dmp out of ui, try to workaround warning messages without tring to optimize the code yet, implement debug instead of output to console.
