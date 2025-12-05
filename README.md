@@ -13,6 +13,7 @@ data.gov
 *************************************************************************
 
 History:
+2025.12.04 - Code cleanup, testing, begin expanding fields on import, begin stubbing out .cshtml page
 2025.11.16 - Migrate meta worlds scripts to this project, wired up Winter Achievement in typescript
 2025.11.15 - Migrate project to Visual Studio 2026! Make sure the app still works. Continue migrating db stuff into source control folder
 2025.11.14 - Add reference to stored proc spCleareTable or whatever it's called, wired it up and checked for the environment variable before clearing before import

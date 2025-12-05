@@ -19,18 +19,17 @@ builder.Services.AddAzureClients(clientBuilder =>
 var app = builder.Build();
 var filetxt = DatafileReader.ImportFiles();
 
-var sampleTodos = new Todo[] {
+var dataBag = new Todo[] {
     new(1, "Create database normalized for most files"),
     new(2, "Login and authentication", DateOnly.FromDateTime(DateTime.Now)),
     new(3, "Report and present the data on the front end", DateOnly.FromDateTime(DateTime.Now.AddDays(1))),
     new(4, $"Last File Row Count: {DatafileReader.currentFileRowCounter.ToString()}")
-    //,new(5, filetxt)   
 };
 
 var todosApi = app.MapGroup("/todos");
-todosApi.MapGet("/", () => sampleTodos);
+todosApi.MapGet("/", () => dataBag);
 todosApi.MapGet("/{id}", (int id) =>
-    sampleTodos.FirstOrDefault(a => a.Id == id) is { } todo
+    dataBag.FirstOrDefault(a => a.Id == id) is { } todo
         ? Results.Ok(todo)
         : Results.NotFound());
 

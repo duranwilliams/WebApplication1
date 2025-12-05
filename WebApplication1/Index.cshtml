@@ -1,4 +1,72 @@
-﻿@page
-@model WebApplication1.IndexModel
+﻿@*
+    This is a comment in Razor syntax.
+    The file extension is .cshtml
+    It uses a combination of C# (server-side) and HTML (client-side).
+*@
+
+@using System.Collections.Generic
+
 @{
+    // C# code block starts here.
+    // This code runs on the server before the page is sent to the browser.
+    ViewData["Title"] = "Sample CSHTML Page";
+    string greeting = "Welcome to the Razor Page Example!";
+
+    // Create a simple list of items (C# List<string>)
+    List<string> features = new List<string>
+    {
+        "Server-side C# Logic",
+        "HTML Markup",
+        "Data Binding and Iteration",
+        "Layout Integration (Often handled by _Layout.cshtml)"
+    };
 }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body>
+    <header>
+        <h1>@greeting</h1> @* Outputting the C# variable 'greeting' *@
+    </header>
+
+    <main>
+        <h2>Key Features of CSHTML</h2>
+
+        @* Example of an 'if' statement in C# *@
+        @if (features.Count > 0)
+        {
+            <p>This page demonstrates the following features:</p>
+            <ul>
+                @* Example of a 'foreach' loop in C# *@
+                @foreach (var feature in features)
+                {
+                    <li><strong>@feature</strong></li> @* Outputting the current item *@
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No features to display at the moment.</p>
+        }
+
+        <h3>Current Server Time</h3>
+        <p>
+            The time when this page was rendered is: **@DateTime.Now.ToShortTimeString()**
+            @* The '@' symbol escapes the HTML and lets you execute inline C# *@
+        </p>
+
+        <hr />
+
+        <p>This content is standard **HTML**.</p>
+    </main>
+
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Sample Application</p>
+    </footer>
+</body>
+</html>
