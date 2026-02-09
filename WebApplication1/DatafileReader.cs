@@ -14,6 +14,8 @@ internal class DatafileReader
     public static String heatFilePath = "public_data_files\\Nationwide Collection of Heat Flow.xlsx";
     private static String pdfUrl = "https://data.wa.gov/api/views/f6w7-q2d2/rows.rdf?accessType=DOWNLOAD";
     public static BigInteger currentFileRowCounter = 0;
+
+    // TODO: reference this realtive path
     private static String psScriptPath = "C:\\Users\\duran\\source\\repos\\USAr-PUBLIC\\WebApplication1\\WebApplication1\\getFileFromUrl.ps1";
     internal static string ImportFiles()
     {
@@ -94,7 +96,7 @@ private static string GetCellValue(Cell cell, WorkbookPart workbookPart)
         var processInfo = new ProcessStartInfo
         {
             FileName = "powershell.exe",
-            Arguments = $"-NoProfile -ExecutionPolicy Bypass -File \"{scriptPath}\"",
+            Arguments = $"-NoProfile -ExecutionPolicy Bypass -File -NoExit \"{scriptPath}\"",
             UseShellExecute = false, // Required to redirect output/error streams
             RedirectStandardOutput = true,
             RedirectStandardError = true,
