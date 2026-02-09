@@ -1,8 +1,8 @@
 # Define the path to the text file containing the list of URLs
-$urlListPath = "C:\Path\To\Your\pdf_list.txt"
+$urlListPath = "C:\tmp\pdf_list.txt"
 
 # Define the destination folder for the downloaded PDFs
-$destinationFolder = "C:\Path\To\Your\Downloads"
+$destinationFolder = "C:\tmp\"
 
 # Ensure the destination folder exists
 if (-not (Test-Path $destinationFolder)) {
