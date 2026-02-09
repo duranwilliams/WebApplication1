@@ -85,4 +85,8 @@ private static string GetCellValue(Cell cell, WorkbookPart workbookPart)
         return cell.InnerText.ToString();
 }
 
+    internal static object callPowershellDownloadPdf()
+    {
+        throw new NotImplementedException();
+    }
 }
