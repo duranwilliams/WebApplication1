@@ -19,6 +19,8 @@ builder.Services.AddAzureClients(clientBuilder =>
 var app = builder.Build();
 var filetxt = DatafileReader.ImportFiles();
 
+var testPSReader = DatafileReader.callPowershellDownloadPdf();
+
 var dataBag = new Todo[] {
     new(1, "Create database normalized for most files"),
     new(2, "Login and authentication", DateOnly.FromDateTime(DateTime.Now)),

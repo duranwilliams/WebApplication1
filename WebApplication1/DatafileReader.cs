@@ -13,7 +13,8 @@ internal class DatafileReader
 {
     public static String heatFilePath = "public_data_files\\Nationwide Collection of Heat Flow.xlsx";
     private static String pdfUrl = "https://data.wa.gov/api/views/f6w7-q2d2/rows.rdf?accessType=DOWNLOAD";
-    public static BigInteger currentFileRowCounter = 0; 
+    public static BigInteger currentFileRowCounter = 0;
+    private static String psScriptPath = "C:\\Users\\duran\\source\\repos\\USAr-PUBLIC\\WebApplication1\\WebApplication1\\getFileFromUrl.ps1";
     internal static string ImportFiles()
     {
         var pth = heatFilePath;
@@ -88,7 +89,29 @@ private static string GetCellValue(Cell cell, WorkbookPart workbookPart)
 
     internal static object callPowershellDownloadPdf()
     {
-        // https://data.wa.gov/api/views/f6w7-q2d2/rows.rdf?accessType=DOWNLOAD
-        throw new NotImplementedException();
+        string scriptPath = psScriptPath;
+
+        var processInfo = new ProcessStartInfo
+        {
+            FileName = "powershell.exe",
+            Arguments = $"-NoProfile -ExecutionPolicy Bypass -File \"{scriptPath}\"",
+            UseShellExecute = false, // Required to redirect output/error streams
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            CreateNoWindow = true
+        };
+
+        using var process = Process.Start(processInfo);
+        process.WaitForExit();
+
+        // Read the output and error streams
+        string output = process.StandardOutput.ReadToEnd();
+        string error = process.StandardError.ReadToEnd();
+
+        Console.WriteLine("Output: " + output);
+        Console.WriteLine("Error: " + error);
+        Console.WriteLine("Exit Code: " + process.ExitCode);
+
+        return error;
     }
 }
