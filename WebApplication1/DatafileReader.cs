@@ -12,6 +12,7 @@ using System.Numerics;
 internal class DatafileReader
 {
     public static String heatFilePath = "public_data_files\\Nationwide Collection of Heat Flow.xlsx";
+    private static String pdfUrl = "https://data.wa.gov/api/views/f6w7-q2d2/rows.rdf?accessType=DOWNLOAD";
     public static BigInteger currentFileRowCounter = 0; 
     internal static string ImportFiles()
     {
@@ -87,6 +88,7 @@ private static string GetCellValue(Cell cell, WorkbookPart workbookPart)
 
     internal static object callPowershellDownloadPdf()
     {
+        // https://data.wa.gov/api/views/f6w7-q2d2/rows.rdf?accessType=DOWNLOAD
         throw new NotImplementedException();
     }
 }
